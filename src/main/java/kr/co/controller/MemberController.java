@@ -27,8 +27,8 @@ public class MemberController {
 
     @Inject
     BCryptPasswordEncoder pwdEncoder;
-
     // 회원가입 get
+
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public void getRegister() throws Exception {
         logger.info("get register");
@@ -69,7 +69,7 @@ public class MemberController {
             pwdMatch = false;
         }
 
-        if(login != null && pwdMatch == true){
+        if(login != null && pwdMatch){
             session.setAttribute("member", login);
         }else{
             session.setAttribute("member", null);
@@ -139,15 +139,13 @@ public class MemberController {
     @RequestMapping(value = "/passChk", method = RequestMethod.POST)
     public boolean passChk(MemberVO vo) throws Exception{
         MemberVO login =service.login(vo);
-        boolean pwdChk = pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
-        return pwdChk;
+        return pwdEncoder.matches(vo.getUserPass(), login.getUserPass());
     }
 
     //아이디 중복 체크
     @ResponseBody
     @RequestMapping(value = "/idChk", method = RequestMethod.POST)
     public int idChk(MemberVO vo) throws Exception{
-        int result = service.idChk(vo);
-        return result;
+        return service.idChk(vo);
     }
 }

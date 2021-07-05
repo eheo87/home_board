@@ -36,14 +36,12 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public int passChk(MemberVO vo) throws Exception {
-        int result= dao.passChk(vo);
-        return result;
+        return dao.passChk(vo);
     }
 
     @Override
     public int idChk(MemberVO vo) throws Exception {
-        int result = dao.idChk(vo);
-        return result;
+        return dao.idChk(vo);
     }
 
 }

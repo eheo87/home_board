@@ -35,13 +35,11 @@ public class MemberDAOImpl implements MemberDAO {
 
     @Override
     public int passChk(MemberVO vo) throws Exception {
-        int result = sql.selectOne("memberMapper.passChk", vo);
-        return result;
+        return sql.selectOne("memberMapper.passChk", vo);
     }
 
     @Override
     public int idChk(MemberVO vo) throws Exception {
-        int result = sql.selectOne("memberMapper.idChk", vo);
-        return result;
+        return sql.selectOne("memberMapper.idChk", vo);
     }
 }

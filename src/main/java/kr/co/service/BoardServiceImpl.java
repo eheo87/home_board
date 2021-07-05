@@ -29,8 +29,8 @@ public class BoardServiceImpl implements BoardService {
 
         List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(boardVO, mpRequest);
         int size = list.size();
-        for(int i=0; i<size; i++){
-            dao.insertFile(list.get(i));
+        for (Map<String, Object> stringObjectMap : list) {
+            dao.insertFile(stringObjectMap);
         }
     }
 
@@ -61,16 +61,16 @@ public class BoardServiceImpl implements BoardService {
          dao.update(boardVO);
 
          List<Map<String,Object>> list = fileUtils.parseUpdateFileInfo(boardVO, files, fileNames, mpRequest);
-         Map<String, Object> tempMap = null;
+         Map<String, Object> tempMap;
          int size = list.size();
-         for(int i=0;i<size;i++){
-             tempMap = list.get(i);
-             if(tempMap.get("IS_NEW").equals("Y")){
-                 dao.insertFile(tempMap);
-             }else{
-                 dao.updateFile(tempMap);
-             }
-         }
+        for (Map<String, Object> stringObjectMap : list) {
+            tempMap = stringObjectMap;
+            if (tempMap.get("IS_NEW").equals("Y")) {
+                dao.insertFile(tempMap);
+            } else {
+                dao.updateFile(tempMap);
+            }
+        }
     }
     //삭제
     @Override

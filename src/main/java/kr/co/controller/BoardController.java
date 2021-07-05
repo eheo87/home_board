@@ -139,7 +139,6 @@ public class BoardController {
         logger.info("reply Write");
 
         replyService.writeReply(vo);
-
         rttr.addAttribute("bno", vo.getBno());
         rttr.addAttribute("page", scri.getPage());
         rttr.addAttribute("perPageNum", scri.getPerPageNum());
@@ -211,7 +210,7 @@ public class BoardController {
         String originalFileName = (String) resultMap.get("ORG_FILE_NAME");
 
         //파일을 저장했던 위치에서 첨부파일을 읽어 byte[] 형식으로 변환한다.
-        byte fileByte[] =  org.apache.commons.io.FileUtils.readFileToByteArray(new File("D:\\board\\home_board\\web\\WEB-INF\\MP\\file\\"+storedFileName));
+        byte[] fileByte =  org.apache.commons.io.FileUtils.readFileToByteArray(new File("D:\\board\\home_board\\web\\WEB-INF\\MP\\file\\"+storedFileName));
 
         response.setContentType("application/octet-stream");
         response.setContentLength(fileByte.length);
